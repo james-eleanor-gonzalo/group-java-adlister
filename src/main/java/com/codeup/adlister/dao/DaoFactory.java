@@ -1,5 +1,7 @@
 package com.codeup.adlister.dao;
 
+import com.adlister.dao.Config;
+
 public class DaoFactory {
     private static Ads adsDao;
     private static Users usersDao;
