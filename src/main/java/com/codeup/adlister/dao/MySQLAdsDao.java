@@ -1,5 +1,5 @@
 package com.codeup.adlister.dao;
-import com.adlister.dao.Config;
+import com.codeup.adlister.dao.Config;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
@@ -58,13 +58,14 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> individualAd(String adID) {
-        PreparedStatement pst = null;
+    public Ad individualAd(long adID) {
+        String query = "SELECT * FROM ads WHERE id = ?";
         try {
-            pst = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
-            pst.setString(1, adID);
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setLong(1, adID);
             ResultSet rs = pst.executeQuery();
-            return createAdsFromResults(rs);
+            rs.next();
+            return extractAd(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving specific add", e);
         }
