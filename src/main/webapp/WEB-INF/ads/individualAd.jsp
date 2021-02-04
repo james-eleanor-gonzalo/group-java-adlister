@@ -9,7 +9,7 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="This Add Page" />
+        <jsp:param name="title" value="This Ad Page" />
     </jsp:include>
 </head>
 <body>
@@ -17,7 +17,7 @@
 
 <div class="container">
     <h1>Viewing Ad</h1>
-    <c:forEach var="ad" items="${single}">
+    <c:forEach var="ad" items="${ads}">
         <div class="col-md-4">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
