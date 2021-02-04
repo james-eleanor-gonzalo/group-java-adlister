@@ -17,6 +17,7 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
+
                 config.getUrl(),
                 config.getUser(),
                 config.getPassword()
@@ -31,6 +32,7 @@ public class MySQLAdsDao implements Ads {
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM ads");
+
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -55,12 +57,26 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public List<Ad> individualAd(String adID) {
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
+            pst.setString(1, adID);
+            ResultSet rs = pst.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving specific add", e);
+        }
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
             rs.getString("description")
+
         );
     }
 
