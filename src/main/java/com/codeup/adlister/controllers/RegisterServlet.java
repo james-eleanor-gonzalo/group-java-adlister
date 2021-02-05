@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
         if (DaoFactory.getUsersDao().findByUsername(username) != null) {
-            request.setAttribute( "error","This username is unavailable.");
+            request.setAttribute( "errorUserUnavail","This username is unavailable.");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
 
@@ -31,29 +31,29 @@ public class RegisterServlet extends HttpServlet {
 
         // validate input
 
-        boolean emailHasErrors = email.isEmpty();
-        if (emailHasErrors) {
-            request.setAttribute("error", "Please enter a valid email");
+        boolean usernameHasErrors = username.isEmpty();
+        if (usernameHasErrors) {
+            request.setAttribute("errorUser", "Please enter a username");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
-        boolean usernameHasErrors = username.isEmpty();
-        if (usernameHasErrors) {
-            request.setAttribute("error", "Please enter a username");
+        boolean emailHasErrors = email.isEmpty();
+        if (emailHasErrors) {
+            request.setAttribute("errorEmail", "Please enter a valid email");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
 
         boolean passwordHasErrors = password.isEmpty();
         if (passwordHasErrors) {
-            request.setAttribute("error", "Please enter a password");
+            request.setAttribute("errorPassword", "Please enter a password");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
 
         boolean passwordConfirmationHasErrors = (!password.equals(passwordConfirmation));
         if (passwordConfirmationHasErrors) {
-            request.setAttribute("error", "Please make sure your passwords match");
+            request.setAttribute("errorMatch", "Please make sure your passwords match");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
