@@ -72,20 +72,19 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> searchedAds(String searchInput) {
+    public List<Ad> searchedAds(String searchInput, String searchCat) {
         System.out.println(searchInput);
         PreparedStatement pst = null;
         try {
-            pst = connection.prepareStatement("SELECT * FROM ads WHERE ads.title LIKE CONCAT('%',?,'%') ");
+            pst = connection.prepareStatement("SELECT * FROM ads WHERE ads.title LIKE CONCAT('%',?,'%') AND ads.category = ? ");
             pst.setString(1, searchInput );
+            pst.setString(2, searchCat);
             ResultSet rs = pst.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error finding match.", e);
         }
     }
-
-//    "SELECT * FROM ads WHERE title LIKE \'%"+param+"%\'"
 
 
 

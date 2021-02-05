@@ -11,5 +11,5 @@ public interface Ads {
     Long insert(Ad ad);
     Ad individualAd(long adID);
 
-    List<Ad> searchedAds(String s);
+    List<Ad> searchedAds(String s, String c);
 }

@@ -41,7 +41,10 @@
             <div class="card-body" style="border: 1px solid black">
                 <h5 class="card-title">${ad.title}</h5>
                 <p class="card-text">${ad.description}</p>
-                <a href="/ads/single?ad-id=${ad.id}" class="text-center center-block">View Full Ad</a>
+<%--                <a href="/ads/single?ad-id=${ad.id}" class="text-center center-block">View Full Ad</a>--%>
+                <a href="<c:url value="/individual">
+                <c:param name="id" value="${ad.id}"/>
+                </c:url>">View Full Ad</a>
             </div>
         </div>
     </c:forEach>
