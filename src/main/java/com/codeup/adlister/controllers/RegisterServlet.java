@@ -30,13 +30,31 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // validate input
-        boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
 
-        if (inputHasErrors) {
-            response.sendRedirect("/register");
+        boolean emailHasErrors = email.isEmpty();
+        if (emailHasErrors) {
+            request.setAttribute("error", "Please enter a valid email");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            return;
+        }
+        boolean usernameHasErrors = username.isEmpty();
+        if (usernameHasErrors) {
+            request.setAttribute("error", "Please enter a username");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            return;
+        }
+
+        boolean passwordHasErrors = password.isEmpty();
+        if (passwordHasErrors) {
+            request.setAttribute("error", "Please enter a password");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            return;
+        }
+
+        boolean passwordConfirmationHasErrors = (!password.equals(passwordConfirmation));
+        if (passwordConfirmationHasErrors) {
+            request.setAttribute("error", "Please make sure your passwords match");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
 
