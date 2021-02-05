@@ -72,22 +72,20 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> searchedAds(String searchInput, String searchCat) {
-        System.out.println("searchInput = " + searchInput);
-        System.out.println("searchCat = " + searchCat);
-//        PreparedStatement pst = null;
-//        try {
-//            pst = connection.prepareStatement("SELECT *   FROM ads JOIN users ON ads.user_id = users.id JOIN pivot_categories pc     ON ads.id = pc.ads_id   JOIN categories c     ON pc.categories_id = c.id   join pivot_media     on ads.id = pivot_media.ad_id   join media     on pivot_media.media_id = media.id WHERE ads.title LIKE  ?  AND c.category_name = ?");
-//            pst.setString(1,"%" + searchInput + "%");
-//            pst.setString(2, searchCat);
-//            ResultSet rs = pst.executeQuery();
-//            return createAdsForMain(rs);
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error retrieving matching ads.", e);
-//        }
-//      delete after method has been finished
-        return null;
+    public List<Ad> searchedAds(String searchInput) {
+        System.out.println(searchInput);
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement("SELECT * FROM ads WHERE ads.title LIKE CONCAT('%',?,'%') ");
+            pst.setString(1, searchInput );
+            ResultSet rs = pst.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding match.", e);
+        }
     }
+
+//    "SELECT * FROM ads WHERE title LIKE \'%"+param+"%\'"
 
 
 

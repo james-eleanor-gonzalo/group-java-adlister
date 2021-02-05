@@ -18,8 +18,9 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String entry = req.getParameter("searchInput");
-        String category = req.getParameter("searchCat");
-        List<Ad> ads = DaoFactory.getAdsDao().searchedAds(entry,category);
+//        String category = req.getParameter("searchCat");
+//      List<Ad> ads = DaoFactory.getAdsDao().searchedAds(entry,category); Use this once you get the title search working, it will search the category.
+        List<Ad> ads = DaoFactory.getAdsDao().searchedAds(entry);
         req.setAttribute("search", ads);
         req.getRequestDispatcher("/WEB-INF/ads/search.jsp").forward(req, resp);
     }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -32,19 +33,18 @@
     </div>
 
     <div class="container">
-        <hr>
-        <c:forEach var="ad" items="${search}">
+
+    </div>
+    <c:forEach var="ad" items="${search}">
         <div class="card col-sm-6 col-md-4 col-lg-3" style="height: 24rem;">
                 <%--<img class="card-img-top" src="..." alt="Card image cap">--%>
             <div class="card-body" style="border: 1px solid black">
                 <h5 class="card-title">${ad.title}</h5>
                 <p class="card-text">${ad.description}</p>
-<%--                <h5 class="price">Price: $${ad.price}</h5>--%>
                 <a href="/ads/single?ad-id=${ad.id}" class="text-center center-block">View Full Ad</a>
             </div>
         </div>
-        </c:forEach>
-
+    </c:forEach>
   
   </body>
 </html>
