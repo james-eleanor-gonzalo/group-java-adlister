@@ -22,8 +22,24 @@ public class CreateAdServlet extends HttpServlet {
             .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+
+        boolean titleHasErrors = title.isEmpty();
+        if (titleHasErrors){
+            request.setAttribute("errorTitle", "Please enter a title");
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
+
+        boolean descriptionHasErrors = description.isEmpty();
+        if (descriptionHasErrors){
+            request.setAttribute("errorDescription", "Please enter a description");
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
+
+
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),
