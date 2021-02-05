@@ -11,7 +11,7 @@
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text">
+                <input id="title" name="title" class="form-control" type="text" value="${stickyTitle}">
             </div>
             <div class="error">
                 <c:if test="${errorTitle != null}">
@@ -20,13 +20,14 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" type="text"></textarea>
+                <textarea id="description" name="description" class="form-control" type="text" value="${stickyTitle}"></textarea>
             </div>
             <div class="error">
                 <c:if test="${errorDescription != null}">
                     <span class="errors">${errorDescription}</span>
                 </c:if>
             </div>
+
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>
