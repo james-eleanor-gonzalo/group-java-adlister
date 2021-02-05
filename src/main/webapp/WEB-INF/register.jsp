@@ -14,23 +14,41 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text">
-
-                <c:if test="${error != null}">
-                    <span class="errors">${error}</span>
+            </div>
+            <div class="error">
+                <c:if test="${errorUserUnavail != null}">
+                    <span class="errors">${errorUserUnavail}</span>
                 </c:if>
-
+                <c:if test="${errorUser != null}">
+                    <span class="errors">${errorUser}</span>
+                </c:if>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" name="email" class="form-control" type="text">
             </div>
+            <div class="error">
+                <c:if test="${errorEmail != null}">
+                    <span class="errors">${errorEmail}</span>
+                </c:if>
+            </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control" type="password">
             </div>
+            <div class="error">
+                <c:if test="${errorPassword != null}">
+                    <span class="errors">${errorPassword}</span>
+                </c:if>
+            </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+            </div>
+            <div class="error">
+                <c:if test="${errorMatch != null}">
+                    <span class="errors">${errorMatch}</span>
+                </c:if>
             </div>
             <input type="submit" class="btn btn-primary btn-block">
         </form>

@@ -13,9 +13,19 @@
                 <label for="title">Title</label>
                 <input id="title" name="title" class="form-control" type="text">
             </div>
+            <div class="error">
+                <c:if test="${errorTitle != null}">
+                    <span class="errors">${errorTitle}</span>
+                </c:if>
+            </div>
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
+            </div>
+            <div class="error">
+                <c:if test="${errorDescription != null}">
+                    <span class="errors">${errorDescription}</span>
+                </c:if>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
