@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -23,29 +25,54 @@ public class CreateAdServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        User user = (User) request.getSession().getAttribute("user");
+        HttpSession session = request.getSession();
+        User user=null;
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-
+        String category = request.getParameter("category");
         boolean titleHasErrors = title.isEmpty();
+        boolean descriptionHasErrors = description.isEmpty();
+        boolean notValidAttempt = titleHasErrors || descriptionHasErrors;
+
+        if(session != null) {
+           user = (User) session.getAttribute("user");
+        }
+
+        if(user != null) {
+            if (!notValidAttempt) {
+                Ad ad = new Ad(
+                        user.getId(),
+                        request.getParameter("title"),
+                        request.getParameter("description")
+//                        request.getParameter("category")
+
+                );
+                DaoFactory.getAdsDao().insert(ad);
+                response.sendRedirect("/ads");
+            } else {
+
+                PrintWriter out = response.getWriter();
+                session.setAttribute("title", title);
+                session.setAttribute("description", description);
+                session.setAttribute("category", "misc");
+                out.println(request.getAttribute("title"));
+                out.println(request.getAttribute("description"));
+            }
+        }
+
+//        boolean titleHasErrors = title.isEmpty();
         if (titleHasErrors){
             request.setAttribute("errorTitle", "Please enter a title");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
 
-        boolean descriptionHasErrors = description.isEmpty();
+//        boolean descriptionHasErrors = description.isEmpty();
         if (descriptionHasErrors){
             request.setAttribute("errorDescription", "Please enter a description");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
 
 
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
-        );
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+
     }
 }
