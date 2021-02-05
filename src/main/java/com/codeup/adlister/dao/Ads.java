@@ -12,4 +12,14 @@ public interface Ads {
     Ad individualAd(long adID);
 
     List<Ad> searchedAds(String s, String c );
+
+    void editTitle(String title, String adId);
+
+    void editDescription(String description, String adId);
+
+    void deleteAd(String adId);
+
+    Ad findById(long id);
+
+    List<Ad> getAdsByUser(long user_id);
 }
