@@ -52,7 +52,7 @@ public class MySQLAdsDao implements Ads {
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
 
-            stmt.setDouble(4, ad.getPrice());
+            stmt.setString(4, ad.getPrice());
 
         
 
@@ -211,7 +211,7 @@ public class MySQLAdsDao implements Ads {
             rs.getLong("user_id"),
             rs.getString("title"),
             rs.getString("description"),
-            rs.getDouble("price")
+            rs.getString("price")
 
         );
     }

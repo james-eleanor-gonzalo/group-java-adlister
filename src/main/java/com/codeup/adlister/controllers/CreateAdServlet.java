@@ -19,6 +19,7 @@ public class CreateAdServlet extends HttpServlet {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
+
         }
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
             .forward(request, response);
@@ -43,13 +44,15 @@ public class CreateAdServlet extends HttpServlet {
         if(user != null) {
             if (!notValidAttempt) {
                 Ad ad = new Ad(
+
                         user.getId(),
                         request.getParameter("title"),
                         request.getParameter("description"),
                         request.getParameter("price")
+//                        request.getParameter("string")
+
+
 //                        request.getParameter("category")
-
-
                 );
                 DaoFactory.getAdsDao().insert(ad);
                 response.sendRedirect("/ads");
@@ -78,20 +81,21 @@ public class CreateAdServlet extends HttpServlet {
         }
 
         if (priceHasErrors){
-            request.setAttribute("errorDescription", "Please enter a description");
+            request.setAttribute("errorDescription", "Please enter a price");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
 
 
 
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description"),
-            request.getParameter("category")
-        );
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+//        Ad ad = new Ad(
+//            user.getId(),
+//            request.getParameter("title"),
+//            request.getParameter("description"),
+//            request.getParameter("price")
+////            request.getParameter("category")
+//        );
+//        DaoFactory.getAdsDao().insert(ad);
+//        response.sendRedirect("/ads");
 
 
     }
