@@ -45,7 +45,7 @@ public class MySQLAdsDao implements Ads {
     public Long insert(Ad ad) {
         try {
 
-            String insertQuery = "INSERT INTO ads(user_id, title, description, price,category) VALUES (?, ?, ?, ?,?)";
+            String insertQuery = "INSERT INTO ads(user_id, title, description, price, category_id) VALUES (?, ?, ?, ?,?)";
 
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
@@ -85,7 +85,7 @@ public class MySQLAdsDao implements Ads {
         System.out.println(searchInput);
         PreparedStatement pst = null;
         try {
-            pst = connection.prepareStatement("SELECT * FROM ads WHERE ads.title LIKE CONCAT('%',?,'%') AND ads.category = ? ");
+            pst = connection.prepareStatement("SELECT * FROM ads WHERE ads.title LIKE CONCAT('%',?,'%') AND ads.category_id = ? ");
             pst.setString(1, searchInput );
             pst.setString(2, searchCat);
             ResultSet rs = pst.executeQuery();
@@ -213,7 +213,7 @@ public class MySQLAdsDao implements Ads {
             rs.getString("title"),
             rs.getString("description"),
             rs.getString("price"),
-            rs.getString("category")
+            rs.getString("category_id")
 
         );
     }

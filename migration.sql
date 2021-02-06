@@ -45,4 +45,10 @@ ALTER TABLE ads
 DROP COLUMN price;
 
 ALTER TABLE ads
-ADD COLUMN price DECIMAL(10,2)
+ADD COLUMN price DECIMAL(10,2);
+
+ALTER TABLE ads
+CHANGE category category_id int;
+
+
+
