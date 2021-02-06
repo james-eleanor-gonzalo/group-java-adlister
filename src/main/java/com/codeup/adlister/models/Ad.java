@@ -6,33 +6,33 @@ public class Ad {
     private User user;
     private String title;
     private String description;
-    private Double price;
+    private String price;
     private String category;
 
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Ad(long id, long userId, String title, String description, Double price) {
+    public Ad(long id, long userId, String title, String description, String price) {
         this.id = id;
         this.userId = userId;
         this.title = title;
-
-        this.description = description;
         this.price = price;
+        this.description = description;
+
     }
 
-    public Ad(long userId, String title, String description, String category) {
+    public Ad(long userId, String title, String description, String price) {
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.price = price;
-        this.category = category;
+//        this.category = category;
     }
 
     public Ad() {
@@ -78,11 +78,11 @@ public class Ad {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
+//    public String getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(String category) {
+//        this.category = category;
+//    }
 }
