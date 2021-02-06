@@ -18,6 +18,7 @@ CREATE TABLE ads (
     user_id INT UNSIGNED NOT NULL,
     title VARCHAR(240) NOT NULL,
     description TEXT NOT NULL,
+    price VARCHAR(20) NOT NULL,
     category VARCHAR(240) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
@@ -40,3 +41,8 @@ CREATE TABLE ad_categories (
         ON DELETE CASCADE
 );
 
+ALTER TABLE ads
+DROP COLUMN price;
+
+ALTER TABLE ads
+ADD COLUMN price DECIMAL(10,2)

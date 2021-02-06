@@ -6,12 +6,13 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text" value="${stickyTitle}">
+                <input id="title" name="title" class="form-control" type="text">
             </div>
             <div class="error">
                 <c:if test="${errorTitle != null}">
@@ -21,6 +22,15 @@
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text" value="${stickyTitle}"></textarea>
+            </div>
+            <div class="error">
+                <c:if test="${errorDescription != null}">
+                    <span class="errors">${errorDescription}</span>
+                </c:if>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <textarea id="price" name="price" class="form-control" type="text" value="${stickyTitle}"></textarea>
             </div>
             <div class="error">
                 <c:if test="${errorDescription != null}">

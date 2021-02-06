@@ -21,7 +21,9 @@
 <%--    <c:forEach var="ad" items="${ads/individual}">--%>
         <div class="col-md-4">
             <h1><c:out value="${ad.title}"/></h1>
-            <h3><c:out value="${ad.description}"/></h3>
+            <p><c:out value="${ad.description}"/></p>
+            <h4>Price: $<c:out value="${ad.price}"/></h4>
+
 
         </div>
 <%--    </c:forEach>--%>
