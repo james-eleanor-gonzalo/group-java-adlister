@@ -39,6 +39,25 @@
                 </c:if>
             </div>
 
+            <fieldset>
+                <legend>Category</legend>
+                <select id="newAdCat" name="category">
+                    <option value="1">Vehicles</option>
+                    <option value="2">Toys</option>
+                    <option value="3">Electronics</option>
+                    <option value="4">Household Goods</option>
+                    <option value="5">Furniture</option>
+                    <option value="6">Fad</option>
+                    <option value="7">Outdoor Living</option>
+                    <option value="8">Tools</option>
+                </select>
+            </fieldset>
+            <div class="error">
+                <c:if test="${errorCategory != null}">
+                    <span class="errors">${errorCategory}</span>
+                </c:if>
+            </div>
+
 
             <input type="submit" class="btn btn-block btn-primary">
 
