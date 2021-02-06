@@ -11,6 +11,7 @@ public interface Ads {
     Long insert(Ad ad);
     Ad individualAd(long adID);
 
+
     List<Ad> searchedAds(String s, String c );
 
     void editTitle(String title, String adId);
@@ -22,4 +23,7 @@ public interface Ads {
     Ad findById(long id);
 
     List<Ad> getAdsByUser(long user_id);
+
+    List<Ad> searchedAds(String s, String c);
+
 }
