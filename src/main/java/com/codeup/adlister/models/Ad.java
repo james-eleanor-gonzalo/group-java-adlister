@@ -6,19 +6,32 @@ public class Ad {
     private User user;
     private String title;
     private String description;
+    private Double price;
     private String category;
 
-    public Ad(long id, long userId, String title, String description) {
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Ad(long id, long userId, String title, String description, Double price) {
         this.id = id;
         this.userId = userId;
         this.title = title;
+
         this.description = description;
+        this.price = price;
     }
 
     public Ad(long userId, String title, String description, String category) {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.price = price;
         this.category = category;
     }
 

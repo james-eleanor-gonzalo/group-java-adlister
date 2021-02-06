@@ -29,10 +29,12 @@ public class CreateAdServlet extends HttpServlet {
         User user=null;
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String price = request.getParameter("price");
         String category = request.getParameter("category");
         boolean titleHasErrors = title.isEmpty();
         boolean descriptionHasErrors = description.isEmpty();
-        boolean notValidAttempt = titleHasErrors || descriptionHasErrors;
+        boolean priceHasErrors = price.isEmpty();
+        boolean notValidAttempt = titleHasErrors || descriptionHasErrors || priceHasErrors;
 
         if(session != null) {
            user = (User) session.getAttribute("user");
@@ -44,7 +46,9 @@ public class CreateAdServlet extends HttpServlet {
                         user.getId(),
                         request.getParameter("title"),
                         request.getParameter("description"),
-                        request.getParameter("category")
+                        request.getParameter("price")
+//                        request.getParameter("category")
+
 
                 );
                 DaoFactory.getAdsDao().insert(ad);
@@ -54,6 +58,7 @@ public class CreateAdServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 session.setAttribute("title", title);
                 session.setAttribute("description", description);
+                session.setAttribute("price", price);
                 session.setAttribute("category", "misc");
                 out.println(request.getAttribute("title"));
                 out.println(request.getAttribute("description"));
@@ -68,6 +73,11 @@ public class CreateAdServlet extends HttpServlet {
 
 //        boolean descriptionHasErrors = description.isEmpty();
         if (descriptionHasErrors){
+            request.setAttribute("errorDescription", "Please enter a description");
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
+
+        if (priceHasErrors){
             request.setAttribute("errorDescription", "Please enter a description");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
