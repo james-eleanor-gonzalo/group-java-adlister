@@ -18,21 +18,22 @@ public class Ad {
         this.price = price;
     }
 
-    public Ad(long id, long userId, String title, String description, String price) {
+    public Ad(long id, long userId, String title, String description, String price, String category) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.price = price;
         this.description = description;
+        this.category = category;
 
     }
 
-    public Ad(long userId, String title, String description, String price) {
+    public Ad(long userId, String title, String description, String price, String category) {
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.price = price;
-//        this.category = category;
+        this.category = category;
     }
 
     public Ad() {
@@ -78,11 +79,11 @@ public class Ad {
         this.description = description;
     }
 
-//    public String getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(String category) {
-//        this.category = category;
-//    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

@@ -35,6 +35,7 @@ public class CreateAdServlet extends HttpServlet {
         boolean titleHasErrors = title.isEmpty();
         boolean descriptionHasErrors = description.isEmpty();
         boolean priceHasErrors = price.isEmpty();
+        boolean categoryHasErrors = category.isEmpty();
         boolean notValidAttempt = titleHasErrors || descriptionHasErrors || priceHasErrors;
 
         if(session != null) {
@@ -48,11 +49,10 @@ public class CreateAdServlet extends HttpServlet {
                         user.getId(),
                         request.getParameter("title"),
                         request.getParameter("description"),
-                        request.getParameter("price")
-//                        request.getParameter("string")
+                        request.getParameter("price"),
+                        request.getParameter("category")
 
 
-//                        request.getParameter("category")
                 );
                 DaoFactory.getAdsDao().insert(ad);
                 response.sendRedirect("/ads");
@@ -82,6 +82,10 @@ public class CreateAdServlet extends HttpServlet {
 
         if (priceHasErrors){
             request.setAttribute("errorDescription", "Please enter a price");
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
+        if (categoryHasErrors){
+            request.setAttribute("errorCategory", "Please choose a catagory");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
 

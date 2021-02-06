@@ -17,6 +17,7 @@
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
             <h4>Price: $${ad.price}</h4>
+            <h4>Category: ${ad.category}</h4>
 
             <a href="<c:url value="/individual">
                 <c:param name="id" value="${ad.id}"/>
