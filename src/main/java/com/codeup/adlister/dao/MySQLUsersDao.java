@@ -1,11 +1,13 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.dao.Config;
+import com.adlister.dao.Config;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
@@ -84,6 +86,75 @@ public class MySQLUsersDao implements Users {
             throw new RuntimeException("Error updating password.", e);
         }
     }
+
+    @Override
+    public List<User> all() {
+        String query = "SELECT * FROM users";
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet usersRs = stmt.executeQuery(query);
+            List<User> users = new ArrayList<>();
+
+            while(usersRs.next()) {
+
+                long id = usersRs.getLong("id");
+                String name = usersRs.getString("name");
+                String email = usersRs.getString("email");
+                String password = usersRs.getString("password");
+
+
+                User user = new User(id, name, email, password);
+
+                users.add(user);
+
+            }
+
+            return users;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error getting all users");
+        }    }
+
+    @Override
+    public User find(String column, String value) {
+
+        // attempt to validate proper column values and keep them variable
+        String columnValue;
+        if (column.equals("username") || column.equals("id") || column.equals("email")) {
+            columnValue = column;
+        } else {
+            throw new RuntimeException("Invalid column name!");
+        }
+
+        String query = "SELECT * FROM users WHERE " + columnValue + " = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, value);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                long user_id = rs.getLong("id");
+                String username = rs.getString("username");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+
+
+                return new User(user_id, username, email, password);
+
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error finding user");
+        }
+
+    }
+
 
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
