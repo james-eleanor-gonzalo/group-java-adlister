@@ -32,7 +32,7 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+            stmt = connection.prepareStatement("SELECT ads.*, categories.categories FROM ads LEFT JOIN categories ON ads.category_id = categories.id");
 
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
@@ -45,7 +45,7 @@ public class MySQLAdsDao implements Ads {
     public Long insert(Ad ad) {
         try {
 
-            String insertQuery = "INSERT INTO ads(user_id, title, description, price, category_id) VALUES (?, ?, ?, ?,?)";
+            String insertQuery = "INSERT INTO ads(user_id, title, description, price, category_id) VALUES (?, ?, ?, ?,?) ";
 
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
@@ -68,7 +68,8 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public Ad individualAd(long adID) {
-        String query = "SELECT * FROM ads WHERE id = ?";
+        String query = "SELECT ads.*, categories.categories FROM ads LEFT JOIN categories ON ads.category_id = categories.id WHERE ads.id = ?";
+
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setLong(1, adID);
@@ -85,7 +86,7 @@ public class MySQLAdsDao implements Ads {
         System.out.println(searchInput);
         PreparedStatement pst = null;
         try {
-            pst = connection.prepareStatement("SELECT * FROM ads WHERE ads.title LIKE CONCAT('%',?,'%') AND ads.category_id = ? ");
+            pst = connection.prepareStatement("SELECT ads.*, categories.categories FROM ads LEFT JOIN categories ON ads.category_id = categories.id WHERE ads.title LIKE CONCAT('%',?,'%') AND categories.categories = ? ");
             pst.setString(1, searchInput );
             pst.setString(2, searchCat);
             ResultSet rs = pst.executeQuery();
@@ -213,7 +214,7 @@ public class MySQLAdsDao implements Ads {
             rs.getString("title"),
             rs.getString("description"),
             rs.getString("price"),
-            rs.getString("category_id")
+            rs.getString("categories")
 
         );
     }
