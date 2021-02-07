@@ -16,7 +16,7 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <jsp:include page="/WEB-INF/partials/editAd.jsp" />
-// <%
+<%
 //     User user = null;
 //
 //     if (session != null){
@@ -46,6 +46,7 @@
 
             <p><c:out value="${ad.description}"/></p>
             <h4>Price: $<c:out value="${ad.price}"/></h4
+            <h4>Category: ${ad.category}</h4>
          
             <ul>
                 ${edit}
