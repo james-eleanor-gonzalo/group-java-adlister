@@ -8,13 +8,13 @@
     }
 
     if(user != null){
-        request.setAttribute("navbar", "<li><a href=\"/ads/search\">Search</a></li>\n" +
-                "<li><a href=\"/logout\">Logout</a></li>\n" +
-                "<li><a href=\"/ads/create\">Create</a></li>\n" +
+        request.setAttribute("navbar", "<li><a href=\"/ads/search\">Search</a></li>" +
+                "<li><a href=\"/logout\">Logout</a></li>" +
+                "<li><a href=\"/ads/create\">Create</a></li>" +
                 "<li><a href=\"/profile\">Profile</a></li>");
     }  else {
-        request.setAttribute("navbar", "<li><a href=\"/ads/search\">Search</a></li>\n" +
-                "<li><a href=\"/register\">Register</a></li>\n" +
+        request.setAttribute("navbar", "<li><a href=\"/ads/search\">Search</a></li>" +
+                "<li><a href=\"/register\">Register</a></li>" +
                 "<li><a href=\"/login\">Login</a></li>");
     }
 
@@ -26,8 +26,7 @@
 
 
 <nav class="navbar bg-info" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">View Ads</a>
         </div>
@@ -35,5 +34,4 @@
             ${navbar}
         </ul>
     </div>
-
 </nav>
