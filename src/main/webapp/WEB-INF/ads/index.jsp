@@ -13,20 +13,26 @@
     <h1>Current Ads</h1>
 
     <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
-            <h4>Price: $${ad.price}</h4>
-            <h4>Category: ${ad.category}</h4>
 
-            <a href="<c:url value="/individual">
-                <c:param name="id" value="${ad.id}"/>
-                </c:url>">View Ad</a>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">${ad.title}</h4>
+                    <p class="card-text">${ad.description}</p>
+                    <h4>Price: $${ad.price}</h4>
+                    <h4>Category: ${ad.category}</h4>
+                    <a href="<c:url value="/individual">
+                        <c:param name="id" value="${ad.id}"/>
+                        </c:url>">View Ad</a>
+                </div>
+            </div>
 
-
-        </div>
     </c:forEach>
 </div>
 
 </body>
 </html>
+
+
+
+
+

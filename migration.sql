@@ -48,7 +48,7 @@ ALTER TABLE ads
 ADD COLUMN price DECIMAL(10,2);
 
 ALTER TABLE ads
-CHANGE category category_id int;
+CHANGE category_id category_id int;
 
 
 
