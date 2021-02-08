@@ -16,7 +16,9 @@
             <div class="card" >
                 <div class="card-body text-center">
                     <h4 class="card-title">${ad.title}</h4>
-                    <p class="card-text">${ad.description}</p>
+<%--                    <p class="card-text">${ad.description}</p>--%>
+                    <h5 class="card-price">$${ad.price}</h5>
+
                     <a href="<c:url value="/individual">
                     <c:param name="id" value="${ad.id}"/>
                     </c:url>">View Ad</a>
