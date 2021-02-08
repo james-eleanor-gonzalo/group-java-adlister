@@ -26,7 +26,7 @@
         <h3>Your ads...</h3>
         <ul class="list-group">
             <c:forEach var="ad" items="${ads}">
-                <li class="list-group-item">
+                <li class="youAds list-group-item">
                     <a href="${pageContext.request.contextPath}/ads/show?id=<c:out value="${ad.id}"/>"><c:out
                             value="${ad.title}"/></a>
                 </li>

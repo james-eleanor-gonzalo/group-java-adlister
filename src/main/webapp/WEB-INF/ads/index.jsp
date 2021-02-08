@@ -10,9 +10,10 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <h1>Current Ads</h1>
 
+<div class="card-columns">
     <c:forEach var="ad" items="${ads}">
-        <div class="card-columns">
-            <div class="card bg-info">
+
+            <div class="card" >
                 <div class="card-body text-center">
                     <h4 class="card-title">${ad.title}</h4>
                     <p class="card-text">${ad.description}</p>
@@ -21,8 +22,9 @@
                     </c:url>">View Ad</a>
                 </div>
             </div>
-        </div>
     </c:forEach>
+        </div>
+
 
 </body>
 </html>
