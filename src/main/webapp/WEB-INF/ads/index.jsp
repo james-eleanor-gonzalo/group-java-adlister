@@ -9,25 +9,20 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <h1>Current Ads</h1>
-<div class="container">
 
     <c:forEach var="ad" items="${ads}">
-        <div class="row">
-        <div class="card col-lg-6 col-md-12" >
-
+        <div class="card-columns">
+            <div class="card bg-info">
                 <div class="card-body text-center">
                     <h4 class="card-title">${ad.title}</h4>
-<%--                    <p class="card-text">${ad.description}</p>--%>
-                    <h5>Price: $${ad.price}</h5>
-                    <h5>Category: ${ad.category}</h5>
+                    <p class="card-text">${ad.description}</p>
                     <a href="<c:url value="/individual">
-                        <c:param name="id" value="${ad.id}"/>
-                        </c:url>">View Ad</a>
+                    <c:param name="id" value="${ad.id}"/>
+                    </c:url>">View Ad</a>
                 </div>
             </div>
         </div>
     </c:forEach>
-</div>
 
 </body>
 </html>
