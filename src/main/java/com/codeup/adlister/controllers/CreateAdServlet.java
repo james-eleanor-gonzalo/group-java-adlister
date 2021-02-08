@@ -68,13 +68,13 @@ public class CreateAdServlet extends HttpServlet {
             }
         }
 
-//        boolean titleHasErrors = title.isEmpty();
+
         if (titleHasErrors){
             request.setAttribute("errorTitle", "Please enter a title");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
 
-//        boolean descriptionHasErrors = description.isEmpty();
+
         if (descriptionHasErrors){
             request.setAttribute("errorDescription", "Please enter a description");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
@@ -88,19 +88,6 @@ public class CreateAdServlet extends HttpServlet {
             request.setAttribute("errorCategory", "Please choose a catagory");
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
-
-
-
-//        Ad ad = new Ad(
-//            user.getId(),
-//            request.getParameter("title"),
-//            request.getParameter("description"),
-//            request.getParameter("price")
-////            request.getParameter("category")
-//        );
-//        DaoFactory.getAdsDao().insert(ad);
-//        response.sendRedirect("/ads");
-
 
     }
 }
