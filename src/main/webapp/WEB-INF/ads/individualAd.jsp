@@ -10,16 +10,16 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <jsp:include page="/WEB-INF/partials/editAd.jsp" />
-
+<h1>Viewing Ad</h1>
 <div class="container">
-    <h1>Viewing Ad</h1>
+
         <div class="card bg-light mb-3 ">
             <div class="card-body"></div>
-                <h5 class="card-title"><c:out value="${ad.title}"/></h5>
+                <h4 class="card-title"><c:out value="${ad.title}"/></h4>
 
                 <p class="card-text"><c:out value="${ad.description}"/></p>
-                <h4>Price: $<c:out value="${ad.price}"/></h4
-                <h4>Category: ${ad.category}</h4>
+                <h5>Price: $<c:out value="${ad.price}"/></h5>
+                <h5>Category: ${ad.category}</h5>
         </div>
     <hr>
         <div>

@@ -1,5 +1,6 @@
 body {
     background-color:#16697a ;
+
 }
 
 .error {
@@ -8,6 +9,14 @@ body {
 }
 
 .card{
-    margin-bottom: .25rem;
+    margin: 5px;
+    text-align: center;
+
+
+}
+
+.container{
+    display: flex;
+    /*align-items: center;*/
 
 }
