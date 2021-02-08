@@ -9,9 +9,9 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+    <h1 class="text-center">Ad Search</h1>
     <div class="container">
-        <h1 class="text-center">Ad Search</h1>
-        <div class="text-center">
+        <div class="searchForm">
             <form action="/ads/search" method="get" class="center-text center-block">
                 <label for="search">Key Word <input type="text" name="searchInput" id="search"></label><br>
                 <label for="searchCat"> Category: <select id="searchCat" name="searchCat">
@@ -28,6 +28,7 @@
         </div>
     </div>
     <div class="container">
+
 
     </div>
     <c:forEach var="ad" items="${search}">
