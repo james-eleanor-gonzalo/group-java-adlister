@@ -21,12 +21,8 @@
 
 %>
 
-
-
-
-
-<nav class="navbar bg-info" >
-    <div class="container">
+<nav class="navbar navbar-dark bg-info" >
+    <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">View Ads</a>
         </div>
