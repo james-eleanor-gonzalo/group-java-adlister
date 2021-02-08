@@ -15,21 +15,6 @@ import java.io.IOException;
 @WebServlet(name = "AdsShowServlet", urlPatterns = "/ads/show")
 public class AdsShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//        long adId = Long.parseLong(request.getParameter("id"));
-//        Ads adsDao = DaoFactory.getAdsDao();
-//        Auth auth = new Auth(request);
-//        Ad ad = adsDao.findById((int) adId);
-//
-//        if (!auth.shouldRedirect()) {
-//            response.sendRedirect("/login");
-//            return;
-//        }
-//
-//        request.setAttribute("ad", ad);
-//        request.setAttribute("currentUserAd", auth.verifyAdUser(ad));
-//        request.getRequestDispatcher("/WEB-INF/show.jsp").forward(request, response);
-
         String adIdString = request.getParameter("id");
         long Id = Long.parseLong(adIdString);
         request.getSession().setAttribute("url", request.getRequestURI() + "?id=" + Id);

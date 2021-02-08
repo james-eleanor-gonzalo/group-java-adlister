@@ -10,22 +10,11 @@ public class ListAdsDao implements Ads {
     private List<Ad> ads;
 
     public List<Ad> all() {
-//        Need to delete the below code at some point
-//        if (ads == null) {
-//            ads = generateAds();
-//        }
         return ads;
     }
 
 
     public Long insert(Ad ad) {
-        // make sure we have ads
-        //        Need to delete the below code at some point
-//        if (ads == null) {
-//            ads = generateAds();
-//        }
-        // we'll assign an "id" here based on the size of the ads list
-        // really the dao would handle this
         ad.setId((long) ads.size());
         ads.add(ad);
         return ad.getId();
@@ -66,8 +55,5 @@ public class ListAdsDao implements Ads {
     public List<Ad> getAdsByUser(long user_id) {
         return null;
     }
-
-
-
 
 }
