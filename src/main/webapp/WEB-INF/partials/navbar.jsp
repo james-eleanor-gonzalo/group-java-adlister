@@ -21,7 +21,7 @@
 
 %>
 
-<nav class="navbar navbar-dark bg-info" >
+<nav class="navbar bg-secondary" >
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">View Ads</a>

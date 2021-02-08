@@ -13,7 +13,7 @@
 <h1>Viewing Ad</h1>
 <div class="container">
 
-        <div class="card bg-light mb-3 ">
+        <div class="card ">
             <div class="card-body"></div>
                 <h4 class="card-title"><c:out value="${ad.title}"/></h4>
 
