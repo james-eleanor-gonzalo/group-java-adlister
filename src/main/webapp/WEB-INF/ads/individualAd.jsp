@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <jsp:include page="/WEB-INF/partials/editAd.jsp" />
-<h1>Viewing Ad</h1>
+<h1>Current Ad</h1>
 <div class="container">
 
         <div class="card ">
